@@ -3,6 +3,8 @@ using NeosModLoader;
 using System;
 using System.Collections.Generic;
 using CloudX.Shared;
+using FrooxEngine;
+using System.Reflection;
 
 namespace HeadlessTweaks
 {

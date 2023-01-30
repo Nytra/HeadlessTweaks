@@ -59,6 +59,18 @@ namespace HeadlessTweaks
                         DiscordIntegration.DiscordHelper.SendEmbed(string.Join(" ", args.ToArray()), BaseX.color.FromHexCode("#bb5ec8"));
                     }));
                 }
+
+                //handler.RegisterCommand(new GenericCommand("helloWorld", "Test command", "", (h, world, args) =>
+                //{
+                //    HeadlessTweaks.Msg("Hello world!");
+                //}));
+
+                //handler.RegisterCommand(new GenericCommand("debugArgs", "Test command", "", (h, world, args) =>
+                //{
+                //    HeadlessTweaks.Msg($"h: {h.ToString()}");
+                //    HeadlessTweaks.Msg($"world: {world.ToString()}\n\tworld name: {world.Name}");
+                //    HeadlessTweaks.Msg($"args: {args.ToString()}");
+                //}));
             }
         }
     }
