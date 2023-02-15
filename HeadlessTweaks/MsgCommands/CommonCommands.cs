@@ -16,6 +16,7 @@ using System.Globalization;
 using System.CodeDom;
 using System;
 using NeosModLoader;
+using static NeosAssets.Graphics.LogiX;
 
 namespace HeadlessTweaks
 {
@@ -484,6 +485,45 @@ namespace HeadlessTweaks
                 }
 
                 _ = userMessages.SendTextMessage($"{monopackCount} folders were monopacked.");
+            }
+
+            [Command("noodleLogix", "Noodle an unpacked LogiX slot called 'noodleLogixTarget' in the root", "Common")]
+            public static void NoodleLogixTest(UserMessages userMessages, Message msg, string[] args)
+            {
+                var focusedWorld = Engine.Current.WorldManager.FocusedWorld;
+                Slot targetSlot = focusedWorld.RootSlot.FindChild((Slot s) => s.Name == "noodleLogixTarget", 0);
+
+                if (targetSlot == null)
+                {
+                    _ = userMessages.SendTextMessage($"noodleLogixTarget not found!");
+                    return;
+                }
+                List<Slot> slots = new List<Slot>();
+
+                
+
+                focusedWorld.RunInUpdates(0, () =>
+                {
+                    var boneChain = targetSlot.AttachComponent<DynamicBoneChain>();
+                    Slot currentSlot = null;
+                    slots = targetSlot.Children.ToList();
+
+                    foreach (Slot s in slots)
+                    {
+                        if (currentSlot == null)
+                        {
+                            currentSlot = s;
+                        }
+                        else
+                        {
+                            s.SetParent(currentSlot);
+                            currentSlot = s;
+                        }
+                        boneChain.Bones.Add().Assign(s);
+                    }
+                });
+
+                _ = userMessages.SendTextMessage($"LogiX was noodled :3");
             }
 
             //[Command("unmonopack", "Un-Monopacks a monopacked LogiX slot called 'unMonopackTargetSlot' in the root (not working)", "Common")]

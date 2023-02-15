@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using CloudX.Shared;
 using FrooxEngine;
 using System.Reflection;
+using NeosHeadless;
+//using Newtonsoft.Json;
+//using System.IO;
 
 namespace HeadlessTweaks
 {
